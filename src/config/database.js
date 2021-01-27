@@ -11,11 +11,11 @@ module.exports = {
     timestamps: true,
     underscored: true,
     underscoredAll: true,
-    'createAt': 'create_at',
-    'updateAt': 'updated_at'
+    createAt: 'create_at',
+    updateAt: 'updated_at',
   },
   dialectOptions: {
-    'America/Sao_Paulo'
+    timezone: 'America/Sao_Paulo',
   },
-  timezone: 'America/Sao_Paulo'
+  timezone: 'America/Sao_Paulo',
 };

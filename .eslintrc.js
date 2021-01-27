@@ -14,5 +14,6 @@ module.exports = {
     'no-console': 'off',
     'class-methods-use-this': 'off',
     'import/first': 'off',
+    'import/no-named-as-default': 'off',
   },
 };
