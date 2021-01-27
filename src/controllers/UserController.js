@@ -76,7 +76,7 @@ class UserController {
         });
       }
 
-      await user.destroy;
+      await user.destroy();
       return res.json(user);
     } catch (e) {
       return res.status(400).json({
