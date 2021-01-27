@@ -17,29 +17,27 @@ class UserController {
     try {
       const users = await User.findAll();
       return res.json(users);
-    }
-    catch (e) {
+    } catch (e) {
       return res.json(null);
     }
   }
 
-  //show -> mostra um usuário -> GET
+  // show -> mostra um usuário -> GET
   async show(req, res) {
     try {
       const users = await User.findByPk(req.params.id);
       return res.json(users);
-    }
-    catch (e) {
+    } catch (e) {
       return res.json(null);
     }
   }
 
-  //update -> atualiza um usuário -> PATCH ou PUT
+  // update -> atualiza um usuário -> PATCH ou PUT
   async update(req, res) {
     try {
       if (!req.params.id) {
         return res.status(400).json({
-          errors: ['Id não enviado']
+          errors: ['Id não enviado'],
         });
       }
 
@@ -57,14 +55,14 @@ class UserController {
         errors: e.errors.map((err) => err.message),
       });
     }
-
   }
-  //delete -> apaga um usuário -> DELETE
+
+  // delete -> apaga um usuário -> DELETE
   async delete(req, res) {
     try {
       if (!req.params.id) {
         return res.status(400).json({
-          errors: ['Id não enviado']
+          errors: ['Id não enviado'],
         });
       }
 
@@ -84,8 +82,7 @@ class UserController {
       });
     }
   }
-
 }
-//store/create -> cria um novo usuário -> POST
+// store/create -> cria um novo usuário -> POST
 
 export default new UserController();
