@@ -28,10 +28,10 @@ export default class Aluno extends Model {
         defaultValue: '',
         Validate: {
           isEmail: {
-            msg: 'email inválido'
+            msg: 'email inválido',
           },
         },
-      },,
+      },
       idade: Sequelize.INTEGER,
       peso: Sequelize.FLOAT,
       altura: Sequelize.FLOAT,
