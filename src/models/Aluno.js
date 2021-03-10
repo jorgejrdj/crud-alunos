@@ -26,15 +26,42 @@ export default class Aluno extends Model {
       email: {
         type: Sequelize.STRING,
         defaultValue: '',
+        unique: {
+          msg: 'email já existe',
+        },
         Validate: {
           isEmail: {
             msg: 'email inválido',
           },
         },
       },
-      idade: Sequelize.INTEGER,
-      peso: Sequelize.FLOAT,
-      altura: Sequelize.FLOAT,
+      idade: {
+        type: Sequelize.INTEGER,
+        defaultValue: '',
+        Validate: {
+          isInt: {
+            msg: 'idade precisa ser um número inteiro',
+          },
+        },
+      },
+      peso: {
+        type: Sequelize.FLOAT,
+        defaultValue: '',
+        Validate: {
+          isFloat: {
+            msg: 'Peso inválido',
+          },
+        },
+      },
+      altura: {
+        type: Sequelize.FLOAT,
+        defaultValue: '',
+        Validate: {
+          isFloat: {
+            msg: 'altura inválida',
+          },
+        },
+      },
     }, {
       sequelize,
     });
