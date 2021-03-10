@@ -45,7 +45,8 @@ class UserController {
         });
       }
       const novosDados = await user.update(req.body);
-      return res.json(novosDados);
+      const { id, nome, email } = novosDados;
+      return res.json({ id, nome, email });
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err) => err.message),
@@ -56,13 +57,7 @@ class UserController {
   // delete -> apaga um usuário -> DELETE
   async delete(req, res) {
     try {
-      if (!req.params.id) {
-        return res.status(400).json({
-          errors: ['Id não enviado'],
-        });
-      }
-
-      const user = await User.findByPk(req.params.id);
+      const user = await User.findByPk(req.userId);
 
       if (!user) {
         return res.status(400).json({
@@ -71,7 +66,7 @@ class UserController {
       }
 
       await user.destroy();
-      return res.json(user);
+      return res.json(null);
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err) => err.message),
