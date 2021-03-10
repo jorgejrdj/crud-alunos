@@ -44,10 +44,8 @@ class UserController {
           errors: ['Usuário não existe'],
         });
       }
-
       const novosDados = await user.update(req.body);
-      const { id, nome, email } = novosDados;
-      return res.json({ id, nome, email });
+      return res.json(novosDados);
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err) => err.message),
@@ -58,7 +56,13 @@ class UserController {
   // delete -> apaga um usuário -> DELETE
   async delete(req, res) {
     try {
-      const user = await User.findByPk(req.userId);
+      if (!req.params.id) {
+        return res.status(400).json({
+          errors: ['Id não enviado'],
+        });
+      }
+
+      const user = await User.findByPk(req.params.id);
 
       if (!user) {
         return res.status(400).json({
@@ -67,7 +71,7 @@ class UserController {
       }
 
       await user.destroy();
-      return res.json(null);
+      return res.json(user);
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err) => err.message),
